@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/*
+  ──────────────────────────────────────────────────────────
+  THEME TOKENS — the single place to rebrand.
+  Colors, fonts, and spacing rhythm live here.
+  Fonts are injected as CSS variables by next/font in layout.tsx.
+  ──────────────────────────────────────────────────────────
+*/
+@theme {
+  /* Palette — warm, quiet-luxury neutrals + one accent */
+  --color-cream: #f6f1ea;
+  --color-shell: #efe7dc;
+  --color-taupe: #b8a392;
+  --color-taupe-soft: #d9ccbd;
+  --color-espresso: #2b211a;
+  --color-espresso-soft: #4a3d33;
+  --color-accent: #9c6b3f; /* refined burnished copper */
+  --color-accent-deep: #7d5230;
+
+  /* Type families (values provided by next/font variables) */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+
+  /* Spacing rhythm for section padding */
+  --spacing-section: 9rem;
+  --spacing-section-sm: 5rem;
+}
+
+:root {
+  --bg: var(--color-cream);
+  --fg: var(--color-espresso);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll plumbing */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Visible focus state for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Headline accent: italic word */
+.accent-italic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-cream);
+}
+
+/* Reduced motion: strip transitions/animations site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide scrollbar on draggable carousel track */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
